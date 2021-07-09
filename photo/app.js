@@ -22,7 +22,7 @@ const duplicatedDir = path.join(workingDir, 'duplicated');
 !fs.existsSync(capturedDir) && fs.mkdirSync(capturedDir);
 !fs.existsSync(duplicatedDir) && fs.mkdirSync(duplicatedDir);
 
-// 3. 폴더안에 있느 파일들을 다 돌면서 해당하는 mp4 || mov, png || aae, IMG_1234 (IMG_E1234)
+// 3. 폴더안에 있는 파일들을 다 돌면서 해당하는 mp4 || mov, png || aae, IMG_1234 (IMG_E1234)
 // 폴더를 읽어와 안에 있는 파일을 하나씩 검사
 fs.promises.readdir(workingDir)
 .then(processFiles) // processFiles == files => processFiles(files) 전달하는 인자와 호출하는 인자가 같으면 생략 가능
