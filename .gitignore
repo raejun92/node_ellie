@@ -1,2 +1,5 @@
 /npm/node_moules
 /black0340
+node-server/package-lock.json
+/node-server/node_modules/.package-lock.json
+node-server/node_modules
