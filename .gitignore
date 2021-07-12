@@ -5,3 +5,5 @@ node-server/package-lock.json
 node-server/node_modules
 /express/node_modules/.package-lock.json
 /express/node_modules
+/cors/node_modules/.package-lock.json
+/cors/node_modules
