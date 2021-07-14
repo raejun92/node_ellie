@@ -1,9 +1,12 @@
 /npm/node_moules
 /black0340
 node-server/package-lock.json
-/node-server/node_modules/.package-lock.json
+/node-server/package-lock.json
 node-server/node_modules
-/express/node_modules/.package-lock.json
+/express/package-lock.json
 /express/node_modules
-/cors/node_modules/.package-lock.json
+/cors/package-lock.json
 /cors/node_modules
+/Dwitter/12-client-template
+/Dwitter/server/node_modules
+/Dwitter/server/package-lock.json

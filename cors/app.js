@@ -22,7 +22,7 @@ const corsOption = {
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('combined'));
-app.use(cors());
+app.use(cors()); 
 app.use(helmet());
 
 app.get('/', (req, res) => {
