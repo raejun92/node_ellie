@@ -16,19 +16,19 @@ let tweets = [ // 새로 추가되는 트위을 배열의 첫 부분에 넣어�
 	}
 ];
 
-export function getAll() {
+export async function getAll() {
 	return tweets;
 }
 
-export function getAllByUsername(username) {
+export async function getAllByUsername(username) {
 	return tweets.filter(tweets => tweets.username === username);
 }
 
-export function getById(id) {
+export async function getById(id) {
 	return tweets.find(tweet => tweet.id === id); // id가 없으면 undefined
 }
 
-export function create(text, username, name) {
+export async function create(text, username, name) {
 	const tweet = { // 새로운 트위를 만듦
 		id: Date.now().toString(), // db가 없어서 Date로 대체
 		text,
@@ -40,7 +40,7 @@ export function create(text, username, name) {
 	return tweet;
 }
 
-export function update(id, text) {
+export async function update(id, text) {
 	const tweet = tweets.find(tweet => tweet.id === id); // tweets에서 변경하고자 하는 id를 찾음
 	if (tweet) {
 		tweet.text = text;
@@ -48,6 +48,6 @@ export function update(id, text) {
 	return tweet;
 }
 
-export function remove(id) {
+export async function remove(id) {
 	tweets = tweets.filter(tweet => tweet.id !== id); // id인 tweet만 빼고 다시 tweets을 만듦
 }
