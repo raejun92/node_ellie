@@ -1,9 +1,18 @@
 import express from 'express';
 import 'express-async-errors';
 import * as tweetController from '../controller/tweet.js';
-
+import { body } from 'express-validator';
+import {validate} from '../middleware/validator.js'
 
 const router = express.Router();
+
+const validateTweet = [
+	body('text')
+	.trim()
+	.isLength({min: 3})
+	.withMessage('text should be a least 3 characters'),
+	validate,
+];
 
 // GET /tweets
 // GET /tweets?username=:username
@@ -16,11 +25,11 @@ router.get('/:id', tweetController.getTweet);
 
 // POST /tweets
 // 새로운 tweet을 추가
-router.post('/', tweetController.createTweet);
+router.post('/', validateTweet, tweetController.createTweet);
 
 // PUT /tweets/:id
 // id에 해당하는 tweet의 내용을 수정
-router.put('/:id', tweetController.updateTweet);
+router.put('/:id', validateTweet, tweetController.updateTweet);
 
 // DELETE /tweets/:id
 // id에 해당하는 tweet을 제거(실제로 tweet을 제거하지 않고 해당 tweet만 뺀 배열을 만듦)
