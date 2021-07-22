@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import 'express-async-errors';
 import tweetsRouter from './route/tweets.js';
+import authRouter from './route/auth.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(helmet());
 app.use(morgan('tiny'));
 
 app.use('/tweets', tweetsRouter);
+app.use('/auth', authRouter);
 
 // 예외 처리
 app.use((req, res, next) => {
