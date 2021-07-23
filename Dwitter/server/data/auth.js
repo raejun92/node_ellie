@@ -1,24 +1,17 @@
+// abcd1234: $2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm
 let users = [
-	{
-		id: '1',
-		username: 'juchoi',
-		// a1324 새로고침되면 달라짐;
-		password: '1$2b$12$9jQU3a9bZZS9LSf26THUpO0ZSN5pKI/qkd58kQ4mj0GOMIkuwxQiC',
-		name: 'juno',
-		email: 'seoul42@server.com',
-	},
-	{
-		id: '2',
-		username: 'hie',
-		// b1324
-		password: '$2b$12$dwvdI.472b3qCoq0Nn1u1ut3LwLGiLavcb8p7vwkxh59d4fgnzFb.',
-		name: 'hello',
-		email: 'cam@server.com',
-	}
+  {
+    id: '1',
+    username: 'bob',
+    password: '$2b$12$G9xf8SFq3oTEgdj7ozHQ/uhDOyeQcUEDU8tnOcvpvApuadr3nE5Vm',
+    name: 'Bob',
+    email: 'bob@gmail.com',
+    url: 'https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-1.png',
+  },
 ];
 
 export async function createUser(user) {
-	const created = {...user, id: Date.now().toString()};
+	const created = {...user, id: Date.now().toString()}; // ...user는 객체의 모든 것을 담는다는 의미
 	console.log(created);
 	users.push(created);
 	return created.id;
@@ -26,4 +19,8 @@ export async function createUser(user) {
 
 export async function findByUsername(username) {
 	return users.find(user => user.username === username);
+}
+
+export async function findById(id) {
+	return users.find(user => user.id === id);
 }

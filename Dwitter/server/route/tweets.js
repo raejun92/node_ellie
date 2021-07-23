@@ -2,7 +2,8 @@ import express from 'express';
 import 'express-async-errors';
 import * as tweetController from '../controller/tweet.js';
 import { body } from 'express-validator';
-import {validate} from '../middleware/validator.js'
+import {validate} from '../middleware/validator.js';
+import { isAuth } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -17,23 +18,23 @@ const validateTweet = [
 // GET /tweets
 // GET /tweets?username=:username
 // 원하는 username이 없으면 모든 tweet 보여주고 있으면 그 username의 tweet보여줌
-router.get('/', tweetController.getTweets);
+router.get('/', isAuth, tweetController.getTweets);
 
 // GET /tweets/:id 
 // 원하는 id값의 tweet을 찾아 보여줌
-router.get('/:id', tweetController.getTweet);
+router.get('/:id', isAuth, tweetController.getTweet);
 
 // POST /tweets
 // 새로운 tweet을 추가
-router.post('/', validateTweet, tweetController.createTweet);
+router.post('/', isAuth, validateTweet, tweetController.createTweet);
 
 // PUT /tweets/:id
 // id에 해당하는 tweet의 내용을 수정
-router.put('/:id', validateTweet, tweetController.updateTweet);
+router.put('/:id', isAuth, validateTweet, tweetController.updateTweet);
 
 // DELETE /tweets/:id
 // id에 해당하는 tweet을 제거(실제로 tweet을 제거하지 않고 해당 tweet만 뺀 배열을 만듦)
-router.delete('/:id', tweetController.deleteTweet);
+router.delete('/:id', isAuth, tweetController.deleteTweet);
 
 
 
