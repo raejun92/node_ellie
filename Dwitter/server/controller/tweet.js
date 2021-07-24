@@ -19,8 +19,8 @@ export async function getTweet(req, res, next) {
 }
 
 export async function createTweet(req, res, next) {
-	const {text, username, name} = req.body; // body안에서 text, username, name을 받아옴
-	const tweet = await tweetRepository.create(text, username, name);
+	const {text} = req.body; // body안에서 text, username, name을 받아옴
+	const tweet = await tweetRepository.create(text, req.userId);
 	res.status(201).json(tweet);
 }
 
