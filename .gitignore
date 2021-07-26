@@ -20,3 +20,5 @@ node-server/node_modules
 
 /auth/node_modules
 /auth/package-lock.json
+
+.env
