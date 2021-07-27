@@ -6,6 +6,7 @@ import 'express-async-errors';
 import tweetsRouter from './route/tweets.js';
 import authRouter from './route/auth.js';
 import { config } from './config.js';
+import {initSocket} from './connection/socket.js';
 
 const app = express();
 
@@ -28,4 +29,5 @@ app.use((error, req, res) => {
 	res.sendStatus(500); // error
 })
 
-app.listen(config.host.port);
+const server = app.listen(config.host.port);
+initSocket(server);
