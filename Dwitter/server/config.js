@@ -15,7 +15,7 @@ function required(key, defaultValue = undefined) {
 export const config = {
 	jwt: {
 		secretKey: required('JWT_SECRET'),
-		expiresInSec: required('JWT_EXPIRES_SEC', 86400), // 환경변수가 설정되지 않아도 86400
+		expiresInSec: parseInt(required('JWT_EXPIRES_SEC', 86400)), // 환경변수가 설정되지 않아도 86400
 	},
 	bcrypt: {
 		saltRounds: parseInt(required('BCRYPT_SALT_ROUNDS', 12)), // 환경변수가 숫자인 경우 숫자로 바꿔줌
