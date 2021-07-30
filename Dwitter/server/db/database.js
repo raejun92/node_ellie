@@ -1,11 +1,21 @@
-import mysql from 'mysql2';
-import { config } from '../config.js';
+import MongoDb from 'mongodb';
+import {config} from '../config.js'
 
-const pool = mysql.createPool({
-	host: config.db.host,
-	user: config.db.user,
-	password: config.db.password,
-	database: config.db.database,
-});
+let db;
 
-export const db = pool.promise();
+export function connectDB() {
+	return MongoDb.MongoClient.connect(config.db.host, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	}).then(client => {
+		db = client.db();
+	});
+}
+
+export function getUsers() {
+	return db.collection('users');
+}
+
+export function getTweets() {
+	return db.collection('tweets');
+}
