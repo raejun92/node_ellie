@@ -1,20 +1,27 @@
-import MongoDb from 'mongodb';
-import {getUsers} from '../db/database.js';
+import Mongoose from 'mongoose';
+import {useVirtualId} from '../db/database.js';
 
-const ObjectID = MongoDb.ObjectID;
+const userSchema = new Mongoose.Schema({
+	username: {type: String, required: true},
+	name: {type: String, required: true},
+	email: {type: String, required: true},
+	password: {type: String, required: true},
+	url: String,
+});
+
+// _id -> id
+useVirtualId(userSchema);
+// 모델 생성
+const User = Mongoose.model("User", userSchema); // User라는 컬렉션을  userSchema 연결
 
 export async function createUser(user) {
-	return getUsers().insertOne(user).then(result => result.ops[0]._id.toString());
+	return new User(user).save().then(data => data.id);
 }
 
 export async function findByUsername(username) {
-	return getUsers().find({username}).next().then(mapOptionalUser);
+	return User.findOne({username});
 }
 
 export async function findById(id) {
-  return getUsers().find({_id: new ObjectID(id)}).next().then(mapOptionalUser);
-}
-
-function mapOptionalUser(user) {
-  return user ? {...user, id: user._id.toString()} : user;
+	return User.findById(id);
 }
