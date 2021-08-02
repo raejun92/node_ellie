@@ -3,7 +3,6 @@ import {config} from '../config.js'
 
 
 export function connectDB() {
-	console.log('linit');
 	return Mongoose.connect(config.db.host, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,

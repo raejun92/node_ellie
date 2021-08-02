@@ -12,7 +12,7 @@ const userSchema = new Mongoose.Schema({
 // _id -> id
 useVirtualId(userSchema);
 // 모델 생성
-const User = Mongoose.model("User", userSchema); // User라는 컬렉션을  userSchema 연결
+const User = Mongoose.model("User", userSchema); // User컬렉션을  userSchema 연결
 
 export async function createUser(user) {
 	return new User(user).save().then(data => data.id);
