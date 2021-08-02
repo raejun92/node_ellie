@@ -11,8 +11,13 @@ import { sequelize } from './db/database.js';
 
 const app = express();
 
+const corsOption = {
+	origin: config.cors.allowedOrigin,
+	PushSubscriptionOptions: 200,
+};
+
 app.use(express.json());
-app.use(cors()); // 배포할 때 신경쓰자
+app.use(cors(corsOption)); // 배포할 때 신경쓰자
 app.use(helmet());
 app.use(morgan('tiny'));
 
@@ -31,6 +36,7 @@ app.use((error, req, res) => {
 })
 
 sequelize.sync().then(() => {
-	const server = app.listen(config.host.port);
+	console.log(`Server is started.... ${new Date()}`);
+	const server = app.listen(config.port);
 	initSocket(server);
 });

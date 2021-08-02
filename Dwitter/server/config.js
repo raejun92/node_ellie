@@ -1,3 +1,5 @@
+// config 파일을 따로 두는 이유: 서버가 시작해야 환경변수에 접근함으로 오류 찾기 힘듦,
+// 환경변수가 정의가 돼 있는지 안 되어 있는지 확인 불가
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -18,13 +20,14 @@ export const config = {
 	bcrypt: {
 		saltRounds: parseInt(required('BCRYPT_SALT_ROUNDS', 12)), // 환경변수가 숫자인 경우 숫자로 바꿔줌
 	},
-	host: {
-		port: parseInt(required('HOST_PORT', 8080)),
-	},
 	db: {
 		host: required('DB_HOST'),
 		user: required('DB_USER'),
 		password: required('DB_PASSWORD'),
 		database: required('DB_DATABASE'),
-	}
-}
+	},
+	port: parseInt(required('HOST_PORT', 8080)),
+	cors: {
+		allowedOrigin: required('CORS_ALLOW_ORIGIN'),
+	},
+};
